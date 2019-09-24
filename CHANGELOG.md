@@ -1,4 +1,73 @@
-### HEAD
+### 10.0.0-alpha.1: TBA
+* Move from `sage-lib` to [`Acorn`](https://github.com/roots/acorn) ([#2122](https://github.com/roots/sage/pull/2122))
+* Change to [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) for handling webpack and compiling/concatnating assets ([#2172](https://github.com/roots/sage/pull/2172))
+* Sage now ships with Blade Composers which are native, robust, more powerful solution to "Controllers" from Sage 9
+* Clean up starter Blade views
+* Move mandatory filters such as the template include, body class, comments template, search form, etc. to Acorn
+* Move core theme files back to the theme root (`index.php`, `functions.php`, etc.) to allow better child theme compatability
+* Create a default `storage/` directory for cache, logs, etc.
+* Update config files to reflect Acorn
+* To be continued...
+
+### 9.0.9: February 13th, 2019
+* Update to Bootstrap 4.3.1 ([#2153](https://github.com/roots/sage/pull/2153))
+
+### 9.0.8: February 11th, 2019
+* Update to Bootstrap 4.3.0 ([#2152](https://github.com/roots/sage/pull/2152))
+* Filter template hierarchy for embed templates ([#2145](https://github.com/roots/sage/pull/2145))
+* Decrease optipng level ([#2143](https://github.com/roots/sage/pull/2143))
+* Unescape post titles ([#2141](https://github.com/roots/sage/pull/2141))
+
+### 9.0.7: December 28th, 2018
+* Update sage-installer which now allows to opt-in for sending framework selection data ([#2137](https://github.com/roots/sage/pull/2137))
+
+### 9.0.6: December 21st, 2018
+* Update to Bootstrap 4.2.1 ([#2136](https://github.com/roots/sage/pull/2136))
+* Do not ignore vendors for plugins ([#2132](https://github.com/roots/sage/pull/2132))
+* Fix stylelint and eslint validation errors ([#2131](https://github.com/roots/sage/pull/2131))
+* Hook run sequence fix ([#2123](https://github.com/roots/sage/pull/2123))
+* Dispatch event when firing routes ([#2080](https://github.com/roots/sage/pull/2080))
+* Normalize and enforce single quotes ([#2076](https://github.com/roots/sage/pull/2076))
+
+### 9.0.5: September 17th, 2018
+* Workaround for Bootstrap incompatibility with webpack. Fixes #2017 ([e72b490](https://github.com/roots/sage/commit/e72b4906264551dc00cd0890de74ae2bce0d77c8))
+
+### 9.0.4: September 7th, 2018
+* Force `illuminate/support` to `5.6.*` ([#2112](https://github.com/roots/sage/pull/2112))
+
+### 9.0.3: September 7th, 2018
+* Revert "Add searchform partial and function to replace default WordPress functionality" ([#2110](https://github.com/roots/sage/pull/2110))
+* Unescape get_language_attributes() ([#2108](https://github.com/roots/sage/pull/2108))
+* Add data from controller to comments template ([#2100](https://github.com/roots/sage/pull/2100))
+
+### 9.0.2: August 21st, 2018
+* Update to Bootstrap 4.1.3 ([#2097](https://github.com/roots/sage/pull/2097))
+* Comments template fix ([#2095](https://github.com/roots/sage/pull/2095))
+* UglifyJs: Change the ecma option from 8 to 5 ([#2092](https://github.com/roots/sage/pull/2092))
+* Add searchform partial and function to replace default WordPress functionality ([#2090](https://github.com/roots/sage/pull/2090))
+* Change language_attributes() to get_language_attributes() ([#2089](https://github.com/roots/sage/pull/2089))
+* Fix missing comment-reply JS ([#2085](https://github.com/roots/sage/pull/2085))
+* Use better merge method for Webpack Preset config ([#2084](https://github.com/roots/sage/pull/2084))
+* Add support for preset specific Webpack config ([#2083](https://github.com/roots/sage/pull/2083))
+* Enable Sass comments and run prefixing before minification ([#2078](https://github.com/roots/sage/pull/2078))
+* Set removeViewBox to 'false' in webpack's optimization settings ([#2075](https://github.com/roots/sage/pull/2075))
+* Add uglifyjs plugin ([#2070](https://github.com/roots/sage/pull/2070))
+* Make template() compatible with wp admin ([#2068](https://github.com/roots/sage/pull/2068))
+* Upgrade to Controller 2.1.0 ([#2025](https://github.com/roots/sage/pull/2025))
+
+### 9.0.1: April 30th, 2018
+* Update to Bootstrap 4.1.1 ([#2065](https://github.com/roots/sage/pull/2065))
+* Auto-detect `proxyUrl` scheme ([#2062](https://github.com/roots/sage/pull/2062))
+* Bump to Laravel 5.6 ([#2061](https://github.com/roots/sage/pull/2061))
+* Update to Bootstrap 4.1.0 ([#2056](https://github.com/roots/sage/pull/2056))
+* Change inline `@php` directive to full form ([#2042](https://github.com/roots/sage/pull/2042))
+* PHP 7.1.3+ is now required ([#2037](https://github.com/roots/sage/pull/2037))
+
+### 9.0.0: February 7th, 2018
+* Update to Bootstrap 4 ([#2015](https://github.com/roots/sage/pull/2015))
+* Allow `no-console` development ([#2008](https://github.com/roots/sage/pull/2008))
+* Move variables and Bootstrap lines to autoload ([#1993](https://github.com/roots/sage/pull/1993))
+* Update controller examples ([#1986](https://github.com/roots/sage/pull/1986))
 * Update to Bootstrap 4 Beta 2 ([#1981](https://github.com/roots/sage/pull/1981))
 * Add friendly-errors-webpack-plugin ([#1961](https://github.com/roots/sage/pull/1961))
 * Update to Controller 9.0.0-beta.4 ([#1959](https://github.com/roots/sage/pull/1959))

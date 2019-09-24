@@ -3,10 +3,11 @@
 @section('content')
   @include('partials.page-header')
 
-  @if (!have_posts())
-    <div class="alert alert-warning">
-      {{  __('Sorry, no results were found.', 'sage') }}
-    </div>
+  @if (! have_posts())
+    @alert(['type' => 'warning'])
+      {{ __('Sorry, no results were found.', 'sage') }}
+    @endalert
+
     {!! get_search_form(false) !!}
   @endif
 
