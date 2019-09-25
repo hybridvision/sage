@@ -1,3 +1,7 @@
+// Setup
+const proxyURL = 'example.test'; // Local URL used for proxying with BrowserSync
+const themeSlug = 'sage'; // Theme folder name
+
 const mix = require('laravel-mix');
 const { whitelist, whitelistPatterns } = require('purgecss-with-wordpress');
 
@@ -11,31 +15,32 @@ const publicPath = path => `${mix.config.publicPath}/${path}`;
 // Source path helper
 const src = path => `resources/assets/${path}`;
 
-/*
- |--------------------------------------------------------------------------
- | Mix Asset Management – https://laravel-mix.com
- |--------------------------------------------------------------------------
- |
- | Mix provides a clean, fluent API for defining some Webpack build steps
- | for your Sage application. By default, we are compiling the Sass file
- | for your application, as well as bundling up your JS files.
- |
- */
 
 // Public Path
 mix
   .setPublicPath('./dist')
-  .setResourceRoot(`/app/themes/sage/${mix.config.publicPath}/`)
+  .setResourceRoot(`/wp-content/themes/${themeSlug}/${mix.config.publicPath}/`)
   .webpackConfig({
     output: { publicPath: mix.config.resourceRoot }
   });
 
 // Browsersync
-mix.browserSync('example.test');
+mix.browserSync({
+  proxy: proxyURL,
+  open: false,
+});
 
 // Styles
-mix.sass(src`styles/app.scss`, 'styles')
-   .tailwind();
+mix.stylus(src`styles/app.styl`, 'styles', {
+  use: [
+    require('rupture')()
+  ]
+}).options({
+    postCss: [
+      require('lost'),
+    ]
+  })
+  .tailwind();
 
 // JavaScript
 mix.js(src`scripts/app.js`, 'scripts')

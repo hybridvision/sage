@@ -1,0 +1,36 @@
+// Debugging styles
+
+// Quick helper to outline element and its children
+.debug, .debug *
+  outline: 1px dotted red !important
+
+
+if ($debug.overlays)
+
+  html, body
+    &:before
+      z-index: 20 !important // Put overlays above header
+      opacity: 0.2 !important
+
+  html
+    lost-utility: overlay ($content-max-width) 1 10px theme('colors.green.700');
+
+  body
+    lost-utility: overlay ($base-width * 0.8) 1 2px theme('colors.blue.300');
+
+    // Centre line
+    &:after
+      content: ''
+      position: fixed
+      top: 0
+      bottom: 0
+      left: 50%
+      width: 1px
+      background-color: rgba(#000, 0.3)
+      z-index: 100
+
+
+if ($debug.outlines)
+
+  *:not(path):not(g):not(rect) // Outline all elements without affecting position or size
+    outline: 1px dotted red !important

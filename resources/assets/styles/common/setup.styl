@@ -1,0 +1,24 @@
+// General Setup
+$debug = {
+  overlays: false,
+  outlines: false,
+}
+
+$base-width        = 1920px // Basis for vw unit calculations on large screens
+$content-max-width = $base-width * 0.9 // Allows 5% either side
+
+// Gutters (assumed to always be a vw, vh or % unit)
+$horizontal-gutter = 5vw
+$vertical-gutter   = 5vw
+
+// Breakpoints in Rupture (https://github.com/jescalan/rupture)
+$breakpoint-columns  = 768px // NOTE: this should align with the 'sm' screen value in tailwind.config.js
+$breakpoint-menu     = 1024px // This needs to match the MMenu activation setting in menu.js
+rupture.scale        = 0 400px  768px   1024px
+rupture.scale-names  = 'small' 'medium' 'large'
+rupture.anti-overlap = -1px // Results in +below(1000px) being max-width: 999px and +above(1000px) being min-width: 1000px
+
+// Lost Grid setup
+// This is currently only used as a fallback for browsers that don't support CSS Grid
+// We use the no-flex option (floats) because this works better in old browsers...
+@lost flexbox no-flex // [flex | no-flex]

@@ -13,7 +13,10 @@ import about from './routes/about';
  *
  * See: {@link https://webpack.js.org/guides/code-splitting/#dynamic-imports | Dynamic Imports}
  */
-const home = async () => import(/* webpackChunkName: "scripts/routes/home" */ './routes/home');
+//### NOTE: Dynamic imports are currently problematic and result in empty CSS bundles
+//### (see: https://github.com/roots/sage/issues/2204)
+//const home = async () => import(/* webpackChunkName: "scripts/routes/home" */ './routes/home');
+import home from './routes/home';
 
 /**
  * Set up DOM router
@@ -24,5 +27,6 @@ const home = async () => import(/* webpackChunkName: "scripts/routes/home" */ '.
  */
 router
   .on('about-us', about)
-  .on('home', async (event) => (await home()).default(event))
+  //.on('home', async (event) => (await home()).default(event))
+  .on('home', home)
   .ready();

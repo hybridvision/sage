@@ -1,0 +1,48 @@
+// Constrain a fractional property value (% or vw units) to work within a maximum width
+// Normally fractions are based on the container/screen width but we need to cap the value
+// on screens that are wider than the $max-content-width, otherwise value will become
+// disproportionally large. This is key to making the max-width layout work and scale.
+constrain(property, value = $horizontal-gutter, max-width = $base-width) {
+  {property}: value
+
+  +above(max-width) {
+    // Only do this if we are dealing with a percentage or vw unit
+    if (unit(value) is '%' || unit(value) is 'vw') {
+      $max = max-width * unit(value / 100, '') // Convert percentage to a decimal
+      {property}: round($max)
+    }
+  }
+
+  // Prevent vw / % units from getting too small
+  +below(700px) {
+    // Only do this if we are dealing with a percentage or vw unit
+    if (unit(value) is '%' || unit(value) is 'vw') {
+      $min = 700px * unit(value / 100, '') // Convert percentage to a decimal
+      {property}: round($min)
+    }
+  }
+}
+
+
+// Apply percentage based vertical padding - defaults to global gutter value if nothing passed
+// Note: fractional vertical padding is based on width
+// Passing 'margin' as second parameter does margins instead
+vertical-spacing(amount = $vertical-gutter, property = 'padding')
+  constrain(s('%s-top', unquote(property)), amount)
+  constrain(s('%s-bottom', unquote(property)), amount)
+
+//---------------------------------------//
+
+// Apply percentage based vertical padding - defaults to global gutter value if nothing passed
+// Passing 'margin' as second parameter does margins instead
+horizontal-spacing(amount = $horizontal-gutter, property = 'padding')
+  constrain(s('%s-left', unquote(property)), amount)
+  constrain(s('%s-right', unquote(property)), amount)
+
+//---------------------------------------//
+
+center(max-width = $content-max-width)
+  max-width: max-width
+  margin: 0 auto
+
+//---------------------------------------//

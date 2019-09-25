@@ -1,0 +1,17 @@
+// Tailwind Reset and base components
+@tailwind base
+@tailwind components
+
+// Stylus Setup
+@import 'common/setup'
+@import 'common/mixins'
+@import 'common/debug'
+
+// Extracted components or custom styles that can't be done with utilities
+@import 'common/global'
+//@import 'components/*'
+//@import 'pages/*'
+
+// Utilities go last in source order so they can
+// override other classes with the same specificity
+@tailwind utilities

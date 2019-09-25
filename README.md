@@ -1,15 +1,15 @@
-# [Sage](https://roots.io/sage/)
+# [Sage](https://roots.io/sage/) (Tailwind + Stylus)
 
 [![Packagist](https://img.shields.io/packagist/vpre/roots/sage.svg?style=flat-square)](https://packagist.org/packages/roots/sage)
 [![devDependency Status](https://img.shields.io/david/dev/roots/sage.svg?style=flat-square)](https://david-dm.org/roots/sage#info=devDependencies)
 [![Build Status](https://img.shields.io/circleci/project/github/roots/sage/10.0.0-dev.svg?style=flat-square)](https://circleci.com/gh/roots/sage)
 [![Follow Roots](https://img.shields.io/twitter/follow/rootswp.svg?style=flat-square&color=1da1f2)](https://twitter.com/rootswp)
 
-Sage is a WordPress starter theme with a modern development workflow.
+Fork of [Sage 10](https://roots.io/sage/) to include [Tailwind](https://tailwindcss.com/) with [Stylus](http://stylus-lang.com/) as the pre-processor. Also includes [Rupture](https://github.com/jescalan/rupture) and [Lost Grid](http://lostgrid.org/). This is based of a pre-release version of Sage 10 so upstream changes will need to be merged in the future. 
 
 ## Features
 
-* Sass for stylesheets
+* Stylus for stylesheets
 * Modern JavaScript
 * [Laravel Mix](https://github.com/JeffreyWay/laravel-mix) for compiling assets and concatenating and minifying files
 * [Browsersync](http://www.browsersync.io/) for synchronized browser testing
