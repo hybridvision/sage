@@ -1,5 +1,5 @@
 // Setup
-const proxyURL = 'example.test'; // Local URL used for proxying with BrowserSync
+const proxyURL = 'wordpress.test'; // Local URL used for proxying with BrowserSync
 const themeSlug = 'sage'; // Theme folder name
 
 const mix = require('laravel-mix');
