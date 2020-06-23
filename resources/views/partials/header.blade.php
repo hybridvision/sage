@@ -1,7 +1,7 @@
-<header>
+<header class="banner">
   <div class="container">
-    <a class="brand text-primary" href="{{ home_url('/') }}">
-      {{ get_bloginfo('name', 'display') }}
+    <a class="brand" href="{{ home_url('/') }}">
+      {{ $siteName }}
     </a>
 
     <nav class="nav-primary">
