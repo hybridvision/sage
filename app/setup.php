@@ -14,10 +14,20 @@ use function Roots\asset;
  * @return void
  */
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('sage/vendor.js', asset('scripts/vendor.js')->uri(), ['jquery'], null, true);
-    wp_enqueue_script('sage/app.js', asset('scripts/app.js')->uri(), ['sage/vendor.js', 'jquery'], null, true);
 
-    wp_add_inline_script('sage/vendor.js', asset('scripts/manifest.js')->contents(), 'before');
+    // Ensure that js assets are in correct order depending on existence of vendor.js
+    $app_js_dependencies = ['jquery'];
+    $manifest_dependency = 'sage/app.js'; // Where to inject manifest.js before
+
+    if (asset('scripts/vendor.js')->exists()) { // vendor.js isn't always created by extract() in Laravel Mix
+        wp_enqueue_script('sage/vendor.js', asset('scripts/vendor.js')->uri(), ['jquery'], null, true);
+        $app_js_dependencies[] = 'sage/vendor.js';
+        $manifest_dependency = 'sage/vendor.js';
+    }
+
+    wp_enqueue_script('sage/app.js', asset('scripts/app.js')->uri(), $app_js_dependencies, null, true);
+
+    wp_add_inline_script($manifest_dependency, asset('scripts/manifest.js')->contents(), 'before');
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -52,10 +62,12 @@ add_action('after_setup_theme', function () {
      * Enable features from Soil when plugin is activated
      * @link https://roots.io/plugins/soil/
      */
-    add_theme_support('soil-clean-up');
-    add_theme_support('soil-nav-walker');
-    add_theme_support('soil-nice-search');
-    add_theme_support('soil-relative-urls');
+    add_theme_support('soil', [
+        'clean-up',
+        'nav-walker',
+        'nice-search',
+        'relative-urls'
+    ]);
 
     /**
      * Enable plugins to manage the document title
@@ -93,7 +105,15 @@ add_action('after_setup_theme', function () {
      * Enable HTML5 markup support
      * @link https://developer.wordpress.org/reference/functions/add_theme_support/#html5
      */
-    add_theme_support('html5', ['caption', 'comment-form', 'comment-list', 'gallery', 'search-form']);
+    add_theme_support('html5', [
+        'caption',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'search-form',
+        'script',
+        'style'
+    ]);
 
     /**
      * Enable selective refresh for widgets in customizer
@@ -107,8 +127,8 @@ add_action('after_setup_theme', function () {
      */
     add_theme_support('editor-color-palette', [
         [
-            'name'  => __('Primary', 'sage'),
-            'slug'  => 'primary',
+            'name' => __('Primary', 'sage'),
+            'slug' => 'primary',
             'color' => '#525ddc',
         ]
     ]);
